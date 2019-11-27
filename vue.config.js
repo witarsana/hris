@@ -1,12 +1,12 @@
 module.exports = {
   devServer: {
         
-      port: 8080,
+      port: process.env.VUE_APP_PORT,
       after: function(app, server, compiler) {
           console.log("test");
       },
       allowedHosts: [
-          '.vuespa.local',
+          '.'+process.env.VUE_APP_HOST+'',
       ]
   },
   lintOnSave: false,
