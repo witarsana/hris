@@ -1,14 +1,13 @@
-
 ## Installation
 
 ### Clone repo
 
 ``` bash
 # clone the repo
-$ git clone https://github.com/coreui/coreui-free-vue-admin-template.git CoreUI-Vue
+$ git clone git@gitlab.com:witarsana/frontcore.git
 
 # go into app's directory
-$ cd CoreUI-Vue
+$ cd frontcore
 
 # install app's dependencies
 $ npm install
