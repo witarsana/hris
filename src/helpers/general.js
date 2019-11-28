@@ -66,10 +66,11 @@ export function initialize(store,router){
         } 
 
         //nanti disempurnakan lagi
-        axios.interceptors.response.use(null,(error)=>{           
-            if (error.response.status==401){
-                store.actions.logOut;
-            }
+        axios.interceptors.response.use(null,(error)=>{   
+            
+            //store.dispatch('logout');
+            router.push('/logout');
+            
             return Promise.reject(error);
         });
 

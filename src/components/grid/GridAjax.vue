@@ -3,21 +3,27 @@
         
         <div class="row mt-2 mb-2">
             
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <template v-if="showDataPerPage">
-                    <select class="form-control form-control-sm" @change="getDataByPage(1)" v-model="show">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
+                    <div class='form-inline'>
+                        <label for="record">Record : </label>
+                        <select class="form-control form-control-sm ml-2" @change="getDataByPage(1)" v-model="show">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                    
                 </template>
             </div>
-            <div class="col-md-6">&nbsp;</div>
+            <div class="col-md-5">&nbsp;</div>
             <template v-if="showSearch">
-                <div class="col-md-4 justify-content-end">
-                    <input @keyup="getDataByPage(1)" type="text" class="form-control form-control-sm float-right" v-model="filter">                   
+                <div class='form-inline'>
+                    <label for="record">Filter :</label>
+                    <input placeholder="Search" @keyup="getDataByPage(1)" type="text" class="ml-4 form-control form-control-sm float-right" v-model="filter">                   
+                    
                 </div>
             </template>
         </div>
@@ -87,7 +93,7 @@
                             <a class="page-link" href="#">{{i}}</a>
                         </li>
                         
-                        <li @click="getDataByPage(curentPage+1)" class="page-item" :class="{ 'disabled' : curentPage == lastPage}">
+                        <li @click="getDataByPage(curentPage+1)" class="page-item"  :class="{ 'disabled' : curentPage == lastPage}">
                         <a class="page-link" href="#" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>

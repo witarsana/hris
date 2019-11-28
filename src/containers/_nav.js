@@ -24,7 +24,7 @@ export default [
           {
             name: 'BPJS Rates',
             to: '/bpjs-rates',
-            
+            icon : 'cil-star'
           },
           
         ]
