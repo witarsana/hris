@@ -57,6 +57,9 @@ export function initialize(store,router){
         }else if (to.path=='/' && !currentUser){
             //alert("disini3"); 
             next('/login');
+        }else if (to.path=='/' && currentUser){
+            //alert("disini3"); 
+            next('/home');
         }else{
             //alert("disini2");  
             next();

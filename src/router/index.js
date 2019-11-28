@@ -10,7 +10,7 @@ const Dashboard = () => import('@/views/Dashboard')
 //Auth
 const Login = () => import('@/views/hAuth/Login')
 const Logout = () => import('@/views/hAuth/Logout')
-const Users = () => import('@/views/users/Users')
+const User = () => import('@/views/users/Users')
 
 //BPJS RATES
 const BpjsRateList = () => import('@/views/hBpjsRates/List')
@@ -54,7 +54,22 @@ function configRoutes () {
         {
           path: '/bpjs-rates',
           name: 'BPJS Rates',
-          component: BpjsRateList
+          meta: { label: 'BPJS Rates'},         
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: BpjsRateList,
+            },
+            {
+              path: ':id',
+              meta: { label: 'BPJS Rate Details'},
+              name: 'bpjsrate',
+              component: User,
+            },
+          ]
         }
  
       ]

@@ -20,7 +20,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"><CIcon name="cil-lock-locked"/></div>                
                 </div>
-                <input v-model="form.password" placeholder="Password" type="password" class="form-control" :class="{ 'is-invalid' : errorMessages!=null && errorMessages.password!=undefined}">
+                <input autocomplete="on" auto v-model="form.password" placeholder="Password" type="password" class="form-control" :class="{ 'is-invalid' : errorMessages!=null && errorMessages.password!=undefined}">
                 <div class="invalid-feedback">
                    The Field is Required
                 </div>
