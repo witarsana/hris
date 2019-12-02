@@ -111,8 +111,12 @@
 import axios from 'axios'
 import { stringify } from 'querystring';
 
+
 export default {
     name : 'GridAjax',
+    components : {
+        
+    },
     props : {
         url : String,
         urlParam : String,
@@ -252,6 +256,10 @@ export default {
                 this.listData = {};
                 this.isLoading = false;
             })
+        },
+        refreshTable(){
+            //alert("test");
+            this.getDataByPage(1);
         },
         filterColumn(key){
             return this.columnTableKey.includes(key)
