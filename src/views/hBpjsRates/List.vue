@@ -150,8 +150,8 @@
         </form>
       </template>
       <template v-slot:modal-footer="{save, close}">
-        <ButtonSaveFull :actions="saveAct" />
-        <ButtonCloseFull :actions="closeAct" />
+        <ButtonSaveFull ref="btnSave" :actions="saveAct" />
+        <ButtonCloseFull ref="btnClose" :actions="closeAct" />
       </template>
     </b-modal>
 </div>
@@ -235,6 +235,17 @@ export default {
       ];
     }
   },
+  watch : {
+    isLoading(){
+      if (this.isLoading == true){
+        this.$refs.btnSave.disabled();
+        this.$refs.btnClose.disabled();
+      }else{
+        this.$refs.btnSave.enabled();
+        this.$refs.btnClose.enabled();
+      }
+    }
+  },
   methods :{
     getBadge(data){
       return "<span class='badge badge-success'>"+data+"</span>";
@@ -296,7 +307,7 @@ export default {
     },
     saveAct(){ 
       
-      
+      this.isLoading = true;
       if (this.status=="save"){
         //alert(JSON.stringify(this.form));
         axios.post(''+url+'bpjsrate',this.form,{
@@ -305,10 +316,10 @@ export default {
             'tenant-token'  : ''+this.$store.getters.curentUser.api_token+''
           }
         }).then((res)=>{
-            //alert(JSON.stringify(res));
+            this.isLoading = false;
             this.processResponse(res);
         }).catch((err)=>{
-            
+            this.isLoading = false;
             console.log(err);
         })
       }
