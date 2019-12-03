@@ -30,131 +30,132 @@
     </CCol>
     <!--Modal for CRUD Operations-->
     <div>
-    <b-modal 
-      id="add-edit"      
-      no-close-on-backdrop
-      size = "md"
-      
-    >
-      <template v-slot:modal-header="{ close }">    
-        <h5>{{titleModal}}</h5>
-      </template>
-      <template v-slot:default="{ hide }">
-        <form>
-          <div class="row mb-2">
-            <div class="col-md-12">
-              <label>Description</label>
-              <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.description!=undefined}" v-model="form.description" type="text" class="form-control">
-              <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.description!=undefined">
-                  {{errorMessages.description[0]}}
+      <b-modal 
+        id="add-edit"      
+        no-close-on-backdrop
+        size = "md"
+        
+      >
+        <template v-slot:modal-header="{ close }">    
+          <h5>{{titleModal}}</h5>
+        </template>
+        <template v-slot:default="{ hide }">
+          <form>
+            <div class="row mb-2">
+              <div class="col-md-12">
+                <label>Description</label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.description!=undefined}" v-model="form.description" type="text" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.description!=undefined">
+                    {{errorMessages.description[0]}}
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-md-6">
-              <label>JHTP</label>
-              <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.jhtp!=undefined}" v-model="form.jhtp" type="number" class="form-control">
-              <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.jhtp!=undefined">
-                  {{errorMessages.jhtp[0]}}
+            <div class="row mb-2">
+              <div class="col-md-6">
+                <label>JHTP</label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.jhtp!=undefined}" v-model="form.jhtp" type="number" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.jhtp!=undefined">
+                    {{errorMessages.jhtp[0]}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>JHTK</label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.jhtk!=undefined}" v-model="form.jhtk" type="number" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.jhtk!=undefined">
+                    {{errorMessages.jhtk[0]}}
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <label>JHTK</label>
-              <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.jhtk!=undefined}" v-model="form.jhtk" type="number" class="form-control">
-              <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.jhtk!=undefined">
-                  {{errorMessages.jhtk[0]}}
+            <div class="row mb-2">
+              <div class="col-md-6">
+                <label>JK</label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.jk!=undefined}" v-model="form.jk" type="number" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.jk!=undefined">
+                    {{errorMessages.jk[0]}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>JKK</label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.jkk!=undefined}" v-model="form.jkk" type="number" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.jkk!=undefined">
+                    {{errorMessages.jkk[0]}}
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-md-6">
-              <label>JK</label>
-              <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.jk!=undefined}" v-model="form.jk" type="number" class="form-control">
-              <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.jk!=undefined">
-                  {{errorMessages.jk[0]}}
+            <div class="row mb-2">
+              <div class="col-md-6">
+                <label>JPK Lajang</label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.jpk_lajang!=undefined}" v-model="form.jpk_lajang" type="number" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.jpk_lajang!=undefined">
+                    {{errorMessages.jpk_lajang[0]}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>JPK Nikah</label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.jpk_nikah!=undefined}" v-model="form.jpk_nikah" type="number" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.jpk_nikah!=undefined">
+                    {{errorMessages.jpk_nikah[0]}}
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <label>JKK</label>
-              <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.jkk!=undefined}" v-model="form.jkk" type="number" class="form-control">
-              <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.jkk!=undefined">
-                  {{errorMessages.jkk[0]}}
+            <div class="row mb-2">
+              <div class="col-md-6">
+                <label>BPJSP</label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.bpjsp!=undefined}" v-model="form.bpjsp" type="number" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.bpjsp!=undefined">
+                    {{errorMessages.bpjsp[0]}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>BPJSK</label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.bpjsk!=undefined}" v-model="form.bpjsk" type="number" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.bpjsk!=undefined">
+                    {{errorMessages.bpjsk[0]}}
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-md-6">
-              <label>JPK Lajang</label>
-              <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.jpk_lajang!=undefined}" v-model="form.jpk_lajang" type="number" class="form-control">
-              <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.jpk_lajang!=undefined">
-                  {{errorMessages.jpk_lajang[0]}}
+            <div class="row mb-2">
+              <div class="col-md-6">
+                <label>Max Salary Pension</label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.max_salary_pension!=undefined}" v-model="form.max_salary_pension" type="text" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.max_salary_pension!=undefined">
+                    {{errorMessages.max_salary_pension[0]}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Max Salary Medical</label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.max_salary_medical!=undefined}" v-model="form.max_salary_medical" type="text" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.max_salary_medical!=undefined">
+                    {{errorMessages.max_salary_medical[0]}}
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <label>JPK Nikah</label>
-              <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.jpk_nikah!=undefined}" v-model="form.jpk_nikah" type="number" class="form-control">
-              <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.jpk_nikah!=undefined">
-                  {{errorMessages.jpk_nikah[0]}}
+            
+            <div class="row mb-2">
+              <div class="col-md-6">
+                <label>Pension Company</label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.pension_company!=undefined}" v-model="form.pension_company" type="number" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.pension_company!=undefined">
+                    {{errorMessages.pension_company[0]}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Pension Employees</label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.pension_employees!=undefined}" v-model="form.pension_employees" type="number" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.pension_employees!=undefined">
+                    {{errorMessages.pension_employees[0]}}
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-md-6">
-              <label>BPJSP</label>
-              <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.bpjsp!=undefined}" v-model="form.bpjsp" type="number" class="form-control">
-              <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.bpjsp!=undefined">
-                  {{errorMessages.bpjsp[0]}}
-              </div>
-            </div>
-            <div class="col-md-6">
-              <label>BPJSK</label>
-              <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.bpjsk!=undefined}" v-model="form.bpjsk" type="number" class="form-control">
-              <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.bpjsk!=undefined">
-                  {{errorMessages.bpjsk[0]}}
-              </div>
-            </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-md-6">
-              <label>Max Salary Pension</label>
-              <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.max_salary_pension!=undefined}" v-model="form.max_salary_pension" type="text" class="form-control">
-              <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.max_salary_pension!=undefined">
-                  {{errorMessages.max_salary_pension[0]}}
-              </div>
-            </div>
-            <div class="col-md-6">
-              <label>Max Salary Medical</label>
-              <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.max_salary_medical!=undefined}" v-model="form.max_salary_medical" type="text" class="form-control">
-              <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.max_salary_medical!=undefined">
-                  {{errorMessages.max_salary_medical[0]}}
-              </div>
-            </div>
-          </div>
-          
-          <div class="row mb-2">
-            <div class="col-md-6">
-              <label>Pension Company</label>
-              <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.pension_company!=undefined}" v-model="form.pension_company" type="number" class="form-control">
-              <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.pension_company!=undefined">
-                  {{errorMessages.pension_company[0]}}
-              </div>
-            </div>
-            <div class="col-md-6">
-              <label>Pension Employees</label>
-              <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.pension_employees!=undefined}" v-model="form.pension_employees" type="number" class="form-control">
-              <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.pension_employees!=undefined">
-                  {{errorMessages.pension_employees[0]}}
-              </div>
-            </div>
-          </div>
-        </form>
-      </template>
-      <template v-slot:modal-footer="{save, close}">
-        <ButtonSaveFull ref="btnSave" :actions="saveAct" />
-        <ButtonCloseFull ref="btnClose" :actions="closeAct" />
-      </template>
-    </b-modal>
-</div>
+          </form>
+        </template>
+        <template v-slot:modal-footer="{save, close}">
+          <ButtonSaveFull ref="btnSave" :actions="saveAct" />
+          <ButtonCloseFull ref="btnClose" :actions="closeAct" />
+        </template>
+      </b-modal>
+    </div>
+    
   </CRow>
 </template>
 
@@ -271,7 +272,12 @@ export default {
       this.form.updated_at = '';
     },
     editAct(data){
-      alert(JSON.stringify(data));      
+      this.titleModal = "Edit Data";
+      this.status = "update";
+      this.form = Object.assign({},data);
+      this.errorMessage = '';
+      this.errorMessages = null
+      this.$bvModal.show('add-edit');    
     },
     deleteAct(data){
       alert(JSON.stringify(data)); 
@@ -309,8 +315,21 @@ export default {
       
       this.isLoading = true;
       if (this.status=="save"){
-        //alert(JSON.stringify(this.form));
+        //save
         axios.post(''+url+'bpjsrate',this.form,{
+          headers : {
+            'Authorization' : ''+this.$store.getters.curentCompany.token_type+' '+this.$store.getters.curentCompany.access_token+'',
+            'tenant-token'  : ''+this.$store.getters.curentUser.api_token+''
+          }
+        }).then((res)=>{
+            this.isLoading = false;
+            this.processResponse(res);
+        }).catch((err)=>{
+            this.isLoading = false;
+            console.log(err);
+        })
+      }else{
+        axios.post(''+url+'bpjsrate/'+this.form.code+'/update',this.form,{
           headers : {
             'Authorization' : ''+this.$store.getters.curentCompany.token_type+' '+this.$store.getters.curentCompany.access_token+'',
             'tenant-token'  : ''+this.$store.getters.curentUser.api_token+''
