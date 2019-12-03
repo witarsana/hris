@@ -280,7 +280,19 @@ export default {
       this.$bvModal.show('add-edit');    
     },
     deleteAct(data){
-      alert(JSON.stringify(data)); 
+
+      axios.delete(''+url+'bpjsrate/'+data.code+'',{
+          headers : {
+            'Authorization' : ''+this.$store.getters.curentCompany.token_type+' '+this.$store.getters.curentCompany.access_token+'',
+            'tenant-token'  : ''+this.$store.getters.curentUser.api_token+''
+          }
+        }).then((res)=>{
+            this.isLoading = false;
+            this.processResponse(res);
+        }).catch((err)=>{
+            this.isLoading = false;
+            console.log(err);
+        })
     },
     viewAct(data){
       alert(JSON.stringify(data)); 
