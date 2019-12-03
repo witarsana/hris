@@ -21,6 +21,9 @@ const PtkpStatusList = () => import('@/views/hPtkpStatus/List')
 //TRAINING TYPE
 const TrainingType = () => import('@/views/hTrainingType/List')
 
+//NATIONAL HOLIDAY
+const NationalHoliday = () => import('@/views/hNationalHoliday/List')
+
 Vue.use(Router)
 
 export default new Router({
@@ -111,7 +114,20 @@ function configRoutes () {
             }
           ]
         },
- 
+        {
+          path: '/national-holiday',
+          name: 'National Holiday',
+          meta: { label: 'National Holiday'},         
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: NationalHoliday,
+            }
+          ]
+        },
       ]
     }
   ]
