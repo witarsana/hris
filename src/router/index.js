@@ -15,6 +15,9 @@ const User = () => import('@/views/users/Users')
 //BPJS RATES
 const BpjsRateList = () => import('@/views/hBpjsRates/List')
 
+//PTKP STATUS 
+const PtkpStatusList = () => import('@/views/hPtkpStatus/List')
+
 Vue.use(Router)
 
 export default new Router({
@@ -66,6 +69,26 @@ function configRoutes () {
             {
               path: ':id',
               meta: { label: 'BPJS Rate Details'},
+              name: 'bpjsrate',
+              component: User,
+            },
+          ]
+        },
+        {
+          path: '/ptkp-status',
+          name: 'PTKP Status',
+          meta: { label: 'PTKP Status'},         
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: PtkpStatusList,
+            },
+            {
+              path: ':id',
+              meta: { label: 'PTKP Status Details'},
               name: 'bpjsrate',
               component: User,
             },

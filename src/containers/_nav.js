@@ -26,6 +26,11 @@ export default [
             to: '/bpjs-rates',
             icon : 'cil-star'
           },
+          {
+            name: 'PTKP Status',
+            to: '/ptkp-status',
+            icon : 'cil-star'
+          },
           
         ]
       },
