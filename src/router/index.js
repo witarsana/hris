@@ -18,6 +18,9 @@ const BpjsRateList = () => import('@/views/hBpjsRates/List')
 //PTKP STATUS 
 const PtkpStatusList = () => import('@/views/hPtkpStatus/List')
 
+//TRAINING TYPE
+const TrainingType = () => import('@/views/hTrainingType/List')
+
 Vue.use(Router)
 
 export default new Router({
@@ -93,7 +96,21 @@ function configRoutes () {
               component: User,
             },
           ]
-        }
+        },
+        {
+          path: '/training-type',
+          name: 'Training Type',
+          meta: { label: 'Training Type'},         
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: TrainingType,
+            }
+          ]
+        },
  
       ]
     }

@@ -31,6 +31,11 @@ export default [
             to: '/ptkp-status',
             icon : 'cil-star'
           },
+          {
+            name: 'Training Type',
+            to: '/training-type',
+            icon : 'cil-star'
+          },
           
         ]
       },
