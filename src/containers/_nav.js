@@ -24,7 +24,17 @@ export default [
           {
             name: 'BPJS Rates',
             to: '/bpjs-rates',
-            
+            icon : 'cil-star'
+          },
+          {
+            name: 'PTKP Status',
+            to: '/ptkp-status',
+            icon : 'cil-star'
+          },
+          {
+            name: 'Training Type',
+            to: '/training-type',
+            icon : 'cil-star'
           },
           
         ]
