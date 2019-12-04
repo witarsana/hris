@@ -205,7 +205,7 @@ export default {
     },
     editAct(data){
       this.titleModal = "Edit Data";
-      this.training_type_name = "update";
+      this.status = "update";
       this.form = Object.assign({},data);
       this.errorMessage = '';
       this.errorMessages = null
@@ -213,12 +213,12 @@ export default {
     },
     deleteAct(data){
       if (confirm("Are you sure delete selected data?")==true){
-        this.training_type_name = "delete";
+        this.status = "delete";
         axios.delete(''+url+'mastertrainingtype/'+data.id+'',{
             headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
-            this.processResponse(res,this.training_type_name);
+            this.processResponse(res,this.status);
         }).catch((err)=>{
             this.isLoading = false;
             console.log(err);
@@ -231,13 +231,13 @@ export default {
     },
     newAct(){
       this.titleModal = "Add New Data";
-      this.training_type_name = "save";
+      this.status = "save";
       this.cleanForm();
       this.errorMessage = '';
       this.errorMessages = null
       this.$bvModal.show('add-edit');
     },
-    processResponse(res,training_type_name){
+    processResponse(res,status){
       this.errorMessage = '';
       this.errorMessages = null
       switch(res.data.message){
@@ -256,7 +256,7 @@ export default {
           //toasted
           let messageT = "";
          
-          switch (training_type_name){
+          switch (status){
             case "save" :
               messageT = "Data saved successfully";
             break;
@@ -282,13 +282,13 @@ export default {
     saveAct(){ 
       
       this.isLoading = true;
-      if (this.training_type_name=="save"){
+      if (this.status=="save"){
         //save
         axios.post(''+url+'mastertrainingtype',this.form,{
           headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
-            this.processResponse(res,this.training_type_name);
+            this.processResponse(res,this.status);
         }).catch((err)=>{
             this.isLoading = false;
             console.log(err);
@@ -298,7 +298,7 @@ export default {
           headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
-            this.processResponse(res,this.training_type_name);
+            this.processResponse(res,this.status);
         }).catch((err)=>{
             this.isLoading = false;
             console.log(err);

@@ -41,6 +41,11 @@ export default [
             to: '/national-holiday',
             icon : 'cil-star'
           },
+          {
+            name: 'Salary Master Data',
+            to: '/salary-master-data',
+            icon : 'cil-star'
+          },
           
         ]
       },

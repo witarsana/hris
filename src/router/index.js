@@ -24,6 +24,9 @@ const TrainingType = () => import('@/views/hTrainingType/List')
 //NATIONAL HOLIDAY
 const NationalHoliday = () => import('@/views/hNationalHoliday/List')
 
+//SALARY MASTER DATA
+const SalaryMasterData = () => import('@/views/hSalaryMasterData/List')
+
 Vue.use(Router)
 
 export default new Router({
@@ -125,6 +128,20 @@ function configRoutes () {
             {
               path: '',
               component: NationalHoliday,
+            }
+          ]
+        },
+        {
+          path: '/salary-master-data',
+          name: 'Salary Master Data',
+          meta: { label: 'Salary Master Data'},         
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: SalaryMasterData,
             }
           ]
         },
