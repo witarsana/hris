@@ -36,6 +36,16 @@ export default [
             to: '/training-type',
             icon : 'cil-star'
           },
+          {
+            name: 'National Holiday',
+            to: '/national-holiday',
+            icon : 'cil-star'
+          },
+          {
+            name: 'Salary Master Data',
+            to: '/salary-master-data',
+            icon : 'cil-star'
+          },
           
         ]
       },

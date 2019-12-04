@@ -368,10 +368,7 @@ export default {
       if (confirm("Are you sure delete selected data?")==true){
         this.status = "delete";
         axios.delete(''+url+'bpjsrate/'+data.code+'',{
-            headers : {
-              'Authorization' : ''+this.$store.getters.curentCompany.token_type+' '+this.$store.getters.curentCompany.access_token+'',
-              'tenant-token'  : ''+this.$store.getters.curentUser.api_token+''
-            }
+            headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
             this.processResponse(res,this.status);
@@ -443,10 +440,7 @@ export default {
       if (this.status=="save"){
         //save
         axios.post(''+url+'bpjsrate',this.form,{
-          headers : {
-            'Authorization' : ''+this.$store.getters.curentCompany.token_type+' '+this.$store.getters.curentCompany.access_token+'',
-            'tenant-token'  : ''+this.$store.getters.curentUser.api_token+''
-          }
+          headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
             this.processResponse(res,this.status);
@@ -456,10 +450,7 @@ export default {
         })
       }else{
         axios.post(''+url+'bpjsrate/'+this.form.code+'/update',this.form,{
-          headers : {
-            'Authorization' : ''+this.$store.getters.curentCompany.token_type+' '+this.$store.getters.curentCompany.access_token+'',
-            'tenant-token'  : ''+this.$store.getters.curentUser.api_token+''
-          }
+          headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
             this.processResponse(res,this.status);

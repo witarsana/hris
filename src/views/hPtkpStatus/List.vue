@@ -168,7 +168,7 @@ export default {
         description : '',
         status : '',
         dependents : '',
-        ptkp_values : '',
+        ptkp_value : '',
         deleted_at : '',
         created_at : '',
         updated_at : ''
@@ -223,7 +223,7 @@ export default {
         this.form.description = '';
         this.form.status = '';
         this.form.dependents = '';
-        this.form.ptkp_values = '';
+        this.form.ptkp_value = '';
         this.form.deleted_at = '';
         this.form.created_at = '';
         this.form.updated_at = '';
@@ -240,10 +240,7 @@ export default {
       if (confirm("Are you sure delete selected data?")==true){
         this.status = "delete";
         axios.delete(''+url+'ptkpstatus/'+data.ptkp_code+'',{
-            headers : {
-              'Authorization' : ''+this.$store.getters.curentCompany.token_type+' '+this.$store.getters.curentCompany.access_token+'',
-              'tenant-token'  : ''+this.$store.getters.curentUser.api_token+''
-            }
+            headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
             this.processResponse(res,this.status);
@@ -314,10 +311,7 @@ export default {
       if (this.status=="save"){
         //save
         axios.post(''+url+'ptkpstatus',this.form,{
-          headers : {
-            'Authorization' : ''+this.$store.getters.curentCompany.token_type+' '+this.$store.getters.curentCompany.access_token+'',
-            'tenant-token'  : ''+this.$store.getters.curentUser.api_token+''
-          }
+          headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
             this.processResponse(res,this.status);
@@ -327,10 +321,7 @@ export default {
         })
       }else{
         axios.post(''+url+'ptkpstatus/'+this.form.ptkp_code+'/update',this.form,{
-          headers : {
-            'Authorization' : ''+this.$store.getters.curentCompany.token_type+' '+this.$store.getters.curentCompany.access_token+'',
-            'tenant-token'  : ''+this.$store.getters.curentUser.api_token+''
-          }
+          headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
             this.processResponse(res,this.status);

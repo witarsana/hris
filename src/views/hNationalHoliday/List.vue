@@ -4,7 +4,7 @@
       <transition name="slide">
         <CCard>
           <CCardHeader>
-            Training Type          
+            National Holiday         
           </CCardHeader>
           <CCardBody>
             <div class="mb-5">
@@ -43,23 +43,24 @@
           <form>
             <div class="row mb-2">
               <div class="col-md-12">
-                <label>Code 
+                <label>Holiday 
                   <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/>
                 </label>
-                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.training_type_code!=undefined}" v-model="form.training_type_code" type="text" class="form-control">
-                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.training_type_code!=undefined">
-                    {{errorMessages.training_type_code[0]}}
+                <Datepicker :typeable=true  format="dd/MM/yyyy" :input-class="{ 'is-invalid' : errorMessages!=null && errorMessages.holiday!=undefined}" :bootstrap-styling="boostrapStyle" v-model="form.holiday" name="uniquename"></Datepicker>
+                <div class="invalid-feedback-local" v-if="errorMessages!=null && errorMessages.holiday!=undefined">
+                    {{errorMessages.holiday[0]}}
                 </div>
               </div>
             </div>
             <div class="row mb-2">
               <div class="col-md-12">
-                <label>Training Type <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/></label>
-                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.training_type_name!=undefined}" v-model="form.training_type_name" type="text" class="form-control">
-                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.training_type_name!=undefined">
-                    {{errorMessages.training_type_name[0]}}
+                <label>Description <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/></label>
+                <textarea :class="{ 'is-invalid' : errorMessages!=null && errorMessages.description!=undefined}" v-model="form.description" class="form-control"></textarea>
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.description!=undefined">
+                    {{errorMessages.description[0]}}
                 </div>
               </div>
+              
             </div>
             
           </form>
@@ -81,27 +82,27 @@
         >
         <div class="row mb-2">
             <div class="col-md-12">
-            <label>Code</label>
-            <div class="data-view">{{form.training_type_code}}</div>
+            <label>Holiday</label>
+            <div class="data-view">{{form.holiday}}</div>
             </div>
         </div>
         <div class="row mb-2">
             <div class="col-md-12">
-            <label>Training Type</label>
-            <div class="data-view">{{form.training_type_name}}</div>
+            <label>Description</label>
+            <div class="data-view">{{form.description}}</div>
             </div>
-            
         </div>
         <div class="row mb-2">
             <div class="col-md-6">
             <label>User Input</label>
-            <div class="data-view">{{form.user_input.name}}</div>
+            <div class="data-view">{{form.user_i.name}}</div>
             </div>
             <div class="col-md-6">
             <label>User Edit</label>
-            <div class="data-view">{{form.user_edit.name}}</div>
+            <div class="data-view">{{form.user_e.name}}</div>
             </div>
         </div>
+        
         
         <template v-slot:modal-footer="{close}">
             <ButtonCloseFull ref="btnClose" :actions="closeActView" />
@@ -125,35 +126,43 @@ import ButtonCloseFull from '../../components/button/ButtonCloseFull.vue'
 //axios
 import axios from 'axios'
 
+//convert helper
+import {convertDateDMY} from '../../helpers/convertion'
+import {convertDateYMD} from '../../helpers/convertion'
+
+import Datepicker from 'vuejs-datepicker';
+
 const url = process.env.VUE_APP_API_SOURCE;
 export default {
-  name: 'TrainingType',
+  name: 'NationalHoliday',
   components : {
     GridAjax,
     ButtonAddFull,
     ButtonSaveFull,
-    ButtonCloseFull
+    ButtonCloseFull,
+    Datepicker
   },
   data: () => {
     return {
-      urlData : url + 'mastertrainingtype/filter',
+      urlData : url + 'nationalholiday/filter',
       titleModal : "Add New Data",
       status : '',
       isLoading : false,
       isError : false,
       errorMessages : null,
       errorMessage  :'',
-      statusRefresh : false, 
+      boostrapStyle : true,
+      statusRefresh : false,
       form : {
         id : '', 
-        training_type_code : '',
-        training_type_name : '',
-        user_input : '',
-        user_edit : '',
+        holiday : '',
+        description : '',
+        user_i : '',
+        user_e : '',
         deleted_at : '',
         created_at : '',
         updated_at : ''
-      }  
+      }
     }
   },
   computed : {
@@ -173,8 +182,8 @@ export default {
     },
     column(){
       return [
-          {'column' : 'training_type_code', 'name' : 'Code', 'format' : this.getBadge},
-          {'column' : 'training_type_name', 'name' : 'Training Type'},
+          {'column' : 'holiday', 'name' : 'Holiday','format': this.formatDate},
+          {'column' : 'description', 'name' : 'Description', 'format' : this.getBadge}, 
       ];
     }
   },
@@ -190,15 +199,19 @@ export default {
     }
   },
   methods :{
+    formatDate(data){
+        return convertDateDMY(data);
+    },
     getBadge(data){
       return "<span class='badge badge-success'>"+data+"</span>";
     }, 
+    
     cleanForm(){
         this.form.id = '';
-        this.form.training_type_code = '';
-        this.form.training_type_name = '';
-        this.form.user_input = '';
-        this.form.user_edit = '';
+        this.form.holiday = '';
+        this.form.description = '';
+        this.form.user_i = '';
+        this.form.user_e = '';
         this.form.deleted_at = '';
         this.form.created_at = '';
         this.form.updated_at = '';
@@ -214,7 +227,7 @@ export default {
     deleteAct(data){
       if (confirm("Are you sure delete selected data?")==true){
         this.status = "delete";
-        axios.delete(''+url+'mastertrainingtype/'+data.id+'',{
+        axios.delete(''+url+'nationalholiday/'+data.id+'',{
             headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
@@ -227,6 +240,7 @@ export default {
     },
     viewAct(data){
       this.form = Object.assign({},data);
+      this.form.holiday =convertDateDMY(this.form.holiday);
       this.$bvModal.show('view');
     },
     newAct(){
@@ -284,7 +298,8 @@ export default {
       this.isLoading = true;
       if (this.status=="save"){
         //save
-        axios.post(''+url+'mastertrainingtype',this.form,{
+        this.form.holiday = convertDateYMD(this.form.holiday);
+        axios.post(''+url+'nationalholiday',this.form,{
           headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
@@ -294,7 +309,8 @@ export default {
             console.log(err);
         })
       }else{
-        axios.post(''+url+'mastertrainingtype/'+this.form.id+'/update',this.form,{
+        this.form.holiday = convertDateYMD(this.form.holiday);
+        axios.post(''+url+'nationalholiday/'+this.form.id+'/update',this.form,{
           headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
@@ -327,5 +343,13 @@ export default {
   .data-view{
     border-bottom: solid thin #e5e5e5;
     padding: 5px;
+  }
+
+  .invalid-feedback-local{
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #e55353;
   }
 </style>
