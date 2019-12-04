@@ -226,47 +226,47 @@
         <div class="row mb-2">
             <div class="col-md-6">
             <label>Income/Deduction</label>
-            <div class="data-view">{{form.income_deduction_status}}</div>
+            <div class="data-view">{{form.income_deduction_status | upper}}</div>
             </div>
             <div class="col-md-6">
             <label>Active Status</label>
-            <div class="data-view">{{form.active_status}}</div>
+            <div class="data-view">{{form.active_status | upper}}</div>
             </div>
         </div>
         <div class="row mb-2">
             <div class="col-md-6">
             <label>Regular/Iregular</label>
-            <div class="data-view">{{form.regular_iregular_status}}</div>
+            <div class="data-view">{{form.regular_iregular_status | upper}}</div>
             </div>
             <div class="col-md-6">
             <label>Attendance Related</label>
-            <div class="data-view">{{form.attendance_related_status}}</div>
+            <div class="data-view">{{form.attendance_related_status | upper}}</div>
             </div>
         </div>
         <div class="row mb-2">
             <div class="col-md-6">
             <label>THR Related</label>
-            <div class="data-view">{{form.thr_related_status}}</div>
+            <div class="data-view">{{form.thr_related_status | upper}}</div>
             </div>
             <div class="col-md-6">
             <label>Overtime Related</label>
-            <div class="data-view">{{form.overtime_related_status}}</div>
+            <div class="data-view">{{form.overtime_related_status | upper}}</div>
             </div>
         </div>
         <div class="row mb-2">
             <div class="col-md-12">
             <label>Tax Related</label>
-            <div class="data-view">{{form.tax_related_status}}</div>
+            <div class="data-view">{{form.tax_related_status | upper}}</div>
             </div>
         </div>
         <div class="row mb-2">
             <div class="col-md-6">
             <label>BPJS Tenaga Kerja Related</label>
-            <div class="data-view">{{form.bpjstk_related_status}}</div>
+            <div class="data-view">{{form.bpjstk_related_status | upper}}</div>
             </div>
             <div class="col-md-6">
             <label>BPJS Kesehatan Related</label>
-            <div class="data-view">{{form.bpjskes_related_status}}</div>
+            <div class="data-view">{{form.bpjskes_related_status | upper }}</div>
             </div>
         </div>
         <div class="row mb-2">
@@ -375,6 +375,11 @@ export default {
           {'column' : 'attendance_related_status', 'name' : 'Attendace Related', 'format' : this.uppercase}
       ];
     }
+  },
+  filters : {
+      upper (text){
+        return text.charAt(0).toUpperCase() + text.slice(1);
+      }
   },
   watch : {
     isLoading(){
