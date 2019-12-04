@@ -162,7 +162,7 @@ export default {
         deleted_at : '',
         created_at : '',
         updated_at : ''
-      }  
+      }
     }
   },
   computed : {
@@ -228,10 +228,7 @@ export default {
       if (confirm("Are you sure delete selected data?")==true){
         this.status = "delete";
         axios.delete(''+url+'nationalholiday/'+data.id+'',{
-            headers : {
-              'Authorization' : ''+this.$store.getters.curentCompany.token_type+' '+this.$store.getters.curentCompany.access_token+'',
-              'tenant-token'  : ''+this.$store.getters.curentUser.api_token+''
-            }
+            headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
             this.processResponse(res,this.status);
@@ -303,10 +300,7 @@ export default {
         //save
         this.form.holiday = convertDateYMD(this.form.holiday);
         axios.post(''+url+'nationalholiday',this.form,{
-          headers : {
-            'Authorization' : ''+this.$store.getters.curentCompany.token_type+' '+this.$store.getters.curentCompany.access_token+'',
-            'tenant-token'  : ''+this.$store.getters.curentUser.api_token+''
-          }
+          headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
             this.processResponse(res,this.status);
@@ -317,10 +311,7 @@ export default {
       }else{
         this.form.holiday = convertDateYMD(this.form.holiday);
         axios.post(''+url+'nationalholiday/'+this.form.id+'/update',this.form,{
-          headers : {
-            'Authorization' : ''+this.$store.getters.curentCompany.token_type+' '+this.$store.getters.curentCompany.access_token+'',
-            'tenant-token'  : ''+this.$store.getters.curentUser.api_token+''
-          }
+          headers : this.headerAccess
         }).then((res)=>{
             this.isLoading = false;
             this.processResponse(res,this.status);
