@@ -41,21 +41,14 @@
         </template>
         <template v-slot:default="{ hide }">
           <form>
-            <div class="row mb-2">
-              <div class="col-md-12">
-                <label>Description 
-                  <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/>
-                </label>
-                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.description!=undefined}" v-model="form.description" type="text" class="form-control">
-                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.description!=undefined">
-                    {{errorMessages.description[0]}}
-                </div>
-              </div>
-            </div>
+            
             <div class="row mb-2">
               <div class="col-md-6">
                 <label>Status <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/></label>
-                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.status!=undefined}" v-model="form.status" type="number" class="form-control">
+                
+                <select :class="{ 'is-invalid' : errorMessages!=null && errorMessages.status!=undefined}" v-model="form.status" class="form-control" >
+                  <option v-for="st in ptkp_status" :key= "st.code" :value="st.code">{{st.status}}</option>
+                </select>
                 <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.status!=undefined">
                     {{errorMessages.status[0]}}
                 </div>
@@ -77,6 +70,17 @@
                 </div>
               </div>
             </div>
+            <div class="row mb-2">
+              <div class="col-md-12">
+                <label>Description 
+                  <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/>
+                </label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.description!=undefined}" v-model="form.description" type="text" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.description!=undefined">
+                    {{errorMessages.description[0]}}
+                </div>
+              </div>
+            </div>
           </form>
         </template>
         <template v-slot:modal-footer="{save, close}">
@@ -94,16 +98,11 @@
             size = "md"  
             title="View Detail" 
         >
-        <div class="row mb-2">
-            <div class="col-md-12">
-            <label>Description</label>
-            <div class="data-view">{{form.description}}</div>
-            </div>
-        </div>
+        
         <div class="row mb-2">
             <div class="col-md-6">
             <label>status</label>
-            <div class="data-view">{{form.status}}</div>
+            <div class="data-view">{{renderStatus(form.status)}}</div>
             </div>
             <div class="col-md-6">
             <label>dependents</label>
@@ -117,7 +116,12 @@
             </div>
             
         </div>
-        
+        <div class="row mb-2">
+            <div class="col-md-12">
+            <label>Description</label>
+            <div class="data-view">{{form.description}}</div>
+            </div>
+        </div>
         <template v-slot:modal-footer="{close}">
             <ButtonCloseFull ref="btnClose" :actions="closeActView" />
         </template>
@@ -172,7 +176,12 @@ export default {
         deleted_at : '',
         created_at : '',
         updated_at : ''
-      }  
+      },
+      ptkp_status : [
+        {'code' : 1,'status':'TK'},
+        {'code' : 2,'status':'K'},
+        {'code' : 5,'status':'HB'},
+      ]
     }
   },
   computed : {
@@ -193,7 +202,7 @@ export default {
     column(){
       return [
           {'column' : 'description', 'name' : 'Description', 'format' : this.getBadge},
-          {'column' : 'status', 'name' : 'Status'},
+          {'column' : 'status', 'name' : 'Status', 'format': this.renderStatus},
           {'column' : 'dependents', 'name' : 'Dependents' },
           {'column' : 'ptkp_value', 'name' : 'PTKP Value','format' : this.getPtkpFormat}  
       ];
@@ -214,9 +223,20 @@ export default {
     getBadge(data){
       return "<span class='badge badge-success'>"+data+"</span>";
     }, 
-    getPtkpFormat(data){
-        return "<div style='text-align:right;'>"+convertToMoney(data)+"</div>";
+    renderStatus(data){
+      let objS = this.ptkp_status.filter(obj=>{
+         return obj.code === data;
+       });
+       try {
+         return data + " (" + objS[0].status + ")";
+       } catch (error) {
+         return "";
+       }
     },
+    getPtkpFormat(data){
+      return "<div style='text-align:right;'>"+convertToMoney(data)+"</div>";
+    },
+    
     cleanForm(){
         this.form.id = '';
         this.form.ptkp_code = '';
@@ -338,6 +358,19 @@ export default {
       this.$bvModal.hide('view');
     }
     
+  },
+  filters : {
+    renderStatus(data,ptkp_status){
+      let objS = ptkp_status.filter(obj=>{
+         return obj.code === data;
+       });
+       try {
+         return objS[0].status;
+       } catch (error) {
+         return "";
+       }
+      
+    }
   }
   
 }
