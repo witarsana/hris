@@ -69,7 +69,7 @@ export function initialize(store,router){
         axios.interceptors.response.use(null,(error)=>{   
             
             //store.dispatch('logout');
-            //router.push('/logout');
+            router.push('/logout');
             
             return Promise.reject(error);
         });

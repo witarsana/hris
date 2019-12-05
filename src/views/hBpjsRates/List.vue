@@ -8,7 +8,7 @@
           </CCardHeader>
           <CCardBody>
             <div class="mb-5">
-              <ButtonAddFull :actions="newAct" />
+              
             </div>
             <div>
             <GridAjax 
@@ -17,7 +17,7 @@
               :token= "headerAccess" 
               :column = "column"
               :editAct = "editAct"
-              :deleteAct = "deleteAct"
+              
               :viewAct = "viewAct"
               ref="gridajax"
             />
@@ -41,17 +41,7 @@
         </template>
         <template v-slot:default="{ hide }">
           <form>
-            <div class="row mb-2">
-              <div class="col-md-12">
-                <label>Description 
-                  <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/>
-                </label>
-                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.description!=undefined}" v-model="form.description" type="text" class="form-control">
-                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.description!=undefined">
-                    {{errorMessages.description[0]}}
-                </div>
-              </div>
-            </div>
+            
             <div class="row mb-2">
               <div class="col-md-6">
                 <label>JHTP <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/></label>
@@ -102,17 +92,33 @@
             </div>
             <div class="row mb-2">
               <div class="col-md-6">
-                <label>BPJSP <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/></label>
-                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.bpjsp!=undefined}" v-model="form.bpjsp" type="number" class="form-control">
-                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.bpjsp!=undefined">
-                    {{errorMessages.bpjsp[0]}}
+                <label>BPJS Kes. Company <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/></label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.bpjskesp!=undefined}" v-model="form.bpjskesp" type="number" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.bpjskesp!=undefined">
+                    {{errorMessages.bpjskesp[0]}}
                 </div>
               </div>
               <div class="col-md-6">
-                <label>BPJSK <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/></label>
-                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.bpjsk!=undefined}" v-model="form.bpjsk" type="number" class="form-control">
-                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.bpjsk!=undefined">
-                    {{errorMessages.bpjsk[0]}}
+                <label>BPJS Kes. Employee <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/></label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.bpjskesk!=undefined}" v-model="form.bpjskesk" type="number" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.bpjskesk!=undefined">
+                    {{errorMessages.bpjskesk[0]}}
+                </div>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-md-6">
+                <label>Pension Company <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/></label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.pension_company!=undefined}" v-model="form.pension_company" type="number" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.pension_company!=undefined">
+                    {{errorMessages.pension_company[0]}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Pension Employees <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/></label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.pension_employees!=undefined}" v-model="form.pension_employees" type="number" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.pension_employees!=undefined">
+                    {{errorMessages.pension_employees[0]}}
                 </div>
               </div>
             </div>
@@ -132,20 +138,14 @@
                 </div>
               </div>
             </div>
-            
             <div class="row mb-2">
-              <div class="col-md-6">
-                <label>Pension Company <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/></label>
-                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.pension_company!=undefined}" v-model="form.pension_company" type="number" class="form-control">
-                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.pension_company!=undefined">
-                    {{errorMessages.pension_company[0]}}
-                </div>
-              </div>
-              <div class="col-md-6">
-                <label>Pension Employees <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/></label>
-                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.pension_employees!=undefined}" v-model="form.pension_employees" type="number" class="form-control">
-                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.pension_employees!=undefined">
-                    {{errorMessages.pension_employees[0]}}
+              <div class="col-md-12">
+                <label>Description 
+                  <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/>
+                </label>
+                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.description!=undefined}" v-model="form.description" type="text" class="form-control">
+                <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.description!=undefined">
+                    {{errorMessages.description[0]}}
                 </div>
               </div>
             </div>
@@ -165,12 +165,7 @@
         size = "md"  
         title="View Detail" 
     >
-      <div class="row mb-2">
-        <div class="col-md-12">
-          <label>Description</label>
-          <div class="data-view">{{form.description}}</div>
-        </div>
-      </div>
+      
       <div class="row mb-2">
         <div class="col-md-6">
           <label>JHTP</label>
@@ -203,12 +198,23 @@
       </div>
       <div class="row mb-2">
         <div class="col-md-6">
-          <label>BPJSP</label>
-          <div class="data-view">{{form.bpjsp}}</div>
+          <label>BPJS Kes. Company</label>
+          <div class="data-view">{{form.bpjskesp}}</div>
         </div>
         <div class="col-md-6">
-          <label>BPJSK</label>
-          <div class="data-view">{{form.bpjsk}}</div>
+          <label>BPJS Kes. Employee</label>
+          <div class="data-view">{{form.bpjskesk}}</div>
+        </div>
+      </div>
+                
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <label>Pension Company</label>
+          <div class="data-view">{{form.pension_company}}</div>
+        </div>
+        <div class="col-md-6">
+          <label>Pension Employees</label>
+          <div class="data-view">{{form.pension_employees}}</div>
         </div>
       </div>
       <div class="row mb-2">
@@ -220,15 +226,11 @@
           <label>Max Salary Medical</label>
           <div class="data-view">{{form.max_salary_medical}}</div>
         </div>
-      </div>          
+      </div>
       <div class="row mb-2">
-        <div class="col-md-6">
-          <label>Pension Company</label>
-          <div class="data-view">{{form.pension_company}}</div>
-        </div>
-        <div class="col-md-6">
-          <label>Pension Employees</label>
-          <div class="data-view">{{form.pension_employees}}</div>
+        <div class="col-md-12">
+          <label>Description</label>
+          <div class="data-view">{{form.description}}</div>
         </div>
       </div>
       <template v-slot:modal-footer="{close}">
@@ -284,8 +286,8 @@ export default {
         jkk : '',
         jpk_lajang : '',
         jpk_nikah : '',
-        bpjsp : '',
-        bpjsk : '',
+        bpjskesp : '',
+        bpjskesk : '',
         max_salary_pension :'',
         max_salary_medical : '',
         pension_company : '',
@@ -346,8 +348,8 @@ export default {
       this.form.jkk = "";
       this.form.jpk_lajang = "";
       this.form.jpk_nikah = "";
-      this.form.bpjsp = '';
-      this.form.bpjsk = '';
+      this.form.bpjskesp = '';
+      this.form.bpjskesk = '';
       this.form.max_salary_pension ='';
       this.form.max_salary_medical = '';
       this.form.pension_company = '';
@@ -393,6 +395,7 @@ export default {
       this.$bvModal.show('add-edit');
     },
     processResponse(res,status){
+      //alert(JSON.stringify(res));
       this.errorMessage = '';
       this.errorMessages = null
       switch(res.data.message){
