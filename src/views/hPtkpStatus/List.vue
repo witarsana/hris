@@ -54,8 +54,13 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <label>Dependents <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/></label>
-                <input :class="{ 'is-invalid' : errorMessages!=null && errorMessages.dependents!=undefined}" v-model="form.dependents" type="number" class="form-control">
+                <label>Dependents <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required, min 1, max 3'" icon="info-circle"/></label>
+                <select :class="{ 'is-invalid' : errorMessages!=null && errorMessages.dependents!=undefined}" v-model="form.dependents" class='form-control'>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
                 <div class="invalid-feedback" v-if="errorMessages!=null && errorMessages.dependents!=undefined">
                     {{errorMessages.dependents[0]}}
                 </div>

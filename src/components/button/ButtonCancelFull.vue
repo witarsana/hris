@@ -1,11 +1,11 @@
 <template>
     <button :style="{'width' : width}" :class="{ 'disabled' : isEnabled == false}" @click="actions" class='btn btn-pill btn-danger float-right'>
-        <font-awesome-icon icon="window-close"/> Close
+        <font-awesome-icon icon="window-close"/> Cancel
     </button>
 </template>
 <script>
 export default {
-    name : 'ButtonCloseFull',
+    name : 'ButtonCancelFull',
     props : {
         actions : Function,
          width : String

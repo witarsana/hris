@@ -1,6 +1,6 @@
 <template>
-    <button @click="viewAct(obj)" type='button' class="btn mr-2 btn-sm btn-pill btn btn-info">
-        <font-awesome-icon icon="eye"/>
+    <button @click="viewAct(obj)" type='button' class="btn mr-2 btn-sm btn-pill btn btn-warning">
+        <font-awesome-icon icon="edit"/>
     </button>
 </template>
 <script>
