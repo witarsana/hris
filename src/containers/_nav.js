@@ -46,6 +46,11 @@ export default [
             to: '/salary-master-data',
             icon : 'cil-star'
           },
+          {
+            name: 'Employee Type',
+            to: '/employee-type',
+            icon : 'cil-star'
+          },
           
         ]
       },

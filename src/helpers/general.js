@@ -18,6 +18,7 @@ export function initialize(store,router){
                 .then (function(resp){
                     //localStorage.setItem('company',JSON.stringify(resp.data.data));
                     //post here to get the token
+                    
                     let tempCompany = resp.data.data[0];
                     let send = {
                         grant_type : process.env.VUE_APP_GRANT_TYPE,
@@ -27,7 +28,8 @@ export function initialize(store,router){
                         password : resp.data.data[0].company_name,
                         scope : '*'
                     };
-                    
+                    //alert(JSON.stringify(send));
+                    //console.log(send);
                     axios.post(''+url+'oauth/token',send)
                     .then(function(ress){
                        
@@ -69,7 +71,7 @@ export function initialize(store,router){
         axios.interceptors.response.use(null,(error)=>{   
             
             //store.dispatch('logout');
-            router.push('/logout');
+            //router.push('/logout');
             
             return Promise.reject(error);
         });

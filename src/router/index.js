@@ -27,6 +27,9 @@ const NationalHoliday = () => import('@/views/hNationalHoliday/List')
 //SALARY MASTER DATA
 const SalaryMasterData = () => import('@/views/hSalaryMasterData/List')
 
+//EMPLOYEE TYPE
+const EmployeeType = () => import('@/views/hEmployeeType/List')
+
 Vue.use(Router)
 
 export default new Router({
@@ -65,7 +68,6 @@ function configRoutes () {
         },
         {
           path: '/bpjs-rates',
-          name: 'BPJS Rates',
           meta: { label: 'BPJS Rates'},         
           component: {
             render (c) { return c('router-view') }
@@ -85,7 +87,6 @@ function configRoutes () {
         },
         {
           path: '/ptkp-status',
-          name: 'PTKP Status',
           meta: { label: 'PTKP Status'},         
           component: {
             render (c) { return c('router-view') }
@@ -98,14 +99,13 @@ function configRoutes () {
             {
               path: ':id',
               meta: { label: 'PTKP Status Details'},
-              name: 'bpjsrate',
+              name: 'ptkpstatus',
               component: User,
             },
           ]
         },
         {
           path: '/training-type',
-          name: 'Training Type',
           meta: { label: 'Training Type'},         
           component: {
             render (c) { return c('router-view') }
@@ -119,7 +119,6 @@ function configRoutes () {
         },
         {
           path: '/national-holiday',
-          name: 'National Holiday',
           meta: { label: 'National Holiday'},         
           component: {
             render (c) { return c('router-view') }
@@ -133,7 +132,6 @@ function configRoutes () {
         },
         {
           path: '/salary-master-data',
-          name: 'Salary Master Data',
           meta: { label: 'Salary Master Data'},         
           component: {
             render (c) { return c('router-view') }
@@ -142,6 +140,19 @@ function configRoutes () {
             {
               path: '',
               component: SalaryMasterData,
+            }
+          ]
+        },
+        {
+          path: '/employee-type',
+          meta: { label: 'EmployeeType'},         
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: EmployeeType,
             }
           ]
         },
