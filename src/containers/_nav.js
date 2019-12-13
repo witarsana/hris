@@ -51,6 +51,11 @@ export default [
             to: '/employee-type',
             icon : 'cil-star'
           },
+          {
+            name: 'Organization',
+            to: '/organization-master-data',
+            icon : 'cil-star'
+          },
           
         ]
       },

@@ -36,6 +36,7 @@ Vue.use(BootstrapVue)
 import Toasted from 'vue-toasted'
 Vue.use(Toasted)
 
+
 /*--------------------------------*/
 Vue.config.performance = true
 Vue.use(CoreuiVue)

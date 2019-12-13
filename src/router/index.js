@@ -30,6 +30,9 @@ const SalaryMasterData = () => import('@/views/hSalaryMasterData/List')
 //EMPLOYEE TYPE
 const EmployeeType = () => import('@/views/hEmployeeType/List')
 
+//ORGANZATION MASTER DATA
+const OrganizationMasterData = () => import ('@/views/hOrganizationMasterData/List')
+
 Vue.use(Router)
 
 export default new Router({
@@ -153,6 +156,19 @@ function configRoutes () {
             {
               path: '',
               component: EmployeeType,
+            }
+          ]
+        },
+        {
+          path: '/organization-master-data',
+          meta: { label: 'Organization Master Data'},         
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: OrganizationMasterData,
             }
           ]
         },
