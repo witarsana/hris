@@ -76,7 +76,7 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination  justify-content-end">
                         <li @click="getDataByPage(1)" class="page-item" :disabled="curentPage == 1" :class="{ 'disabled' : curentPage == 1}"><a class="page-link" >First</a></li>
-                        <li @click="getDataByPage(curentPage-1)" class="page-item " :class="{ 'disabled' : curentPage == 1}">
+                        <li @click="getDataByPage(curentPage-1)" class="page-item " :disabled="curentPage == 1" :class="{ 'disabled' : curentPage == 1}">
                             <a class="page-link" href="#" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                                 <span class="sr-only">Previous</span>
@@ -93,13 +93,13 @@
                             <a class="page-link" href="#">{{i}}</a>
                         </li>
                         
-                        <li @click="getDataByPage(curentPage+1)" class="page-item"  :class="{ 'disabled' : curentPage == lastPage}">
+                        <li @click="getDataByPage(curentPage+1)" class="page-item" :disabled="curentPage == lastPage"  :class="{ 'disabled' : curentPage == lastPage}">
                         <a class="page-link" href="#" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
                         </a>
                         </li>
-                        <li @click="getDataByPage(lastPage)" class="page-item" :class="{ 'disabled' : curentPage == lastPage}"><a class="page-link" href="#">Last</a></li>
+                        <li @click="getDataByPage(lastPage)" class="page-item" :disabled="curentPage == lastPage" :class="{ 'disabled' : curentPage == lastPage}"><a class="page-link" href="#">Last</a></li>
                     </ul>
                 </nav>
             </div>

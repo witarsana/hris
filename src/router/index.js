@@ -30,6 +30,9 @@ const SalaryMasterData = () => import('@/views/hSalaryMasterData/List')
 //EMPLOYEE TYPE
 const EmployeeType = () => import('@/views/hEmployeeType/List')
 
+//EMPLOYEE
+const Employee = () => import('@/views/hEmployee/List')
+
 //ORGANZATION MASTER DATA
 const OrganizationMasterData = () => import ('@/views/hOrganizationMasterData/List')
 
@@ -172,6 +175,19 @@ function configRoutes () {
             }
           ]
         },
+        {
+          path: '/employee',
+          meta: { label: 'Employee'},         
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: Employee,
+            }
+          ]
+        }
       ]
     }
   ]

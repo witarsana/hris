@@ -17,6 +17,7 @@ export function convertDateDMY(date){
 }
 
 export function convertDateYMD(date){
+    //alert(date);
     let newDate = new Date(date);
     return appendLeadingZeroes(newDate.getFullYear()) + "/" + appendLeadingZeroes((newDate.getMonth() + 1)) + "/" + newDate.getDate();
 }

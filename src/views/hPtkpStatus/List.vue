@@ -338,6 +338,7 @@ export default {
         axios.post(''+url+'ptkpstatus',this.form,{
           headers : this.headerAccess
         }).then((res)=>{
+          //alert(JSON.stringify(res));
             this.isLoading = false;
             this.processResponse(res,this.status);
         }).catch((err)=>{

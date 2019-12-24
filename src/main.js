@@ -17,6 +17,8 @@ import { faPlusSquare} from '@fortawesome/free-solid-svg-icons'
 import { faSave} from '@fortawesome/free-solid-svg-icons'
 import { faWindowClose} from '@fortawesome/free-solid-svg-icons'
 import { faInfoCircle} from '@fortawesome/free-solid-svg-icons'
+import { faArrowCircleRight} from '@fortawesome/free-solid-svg-icons'
+import { faArrowCircleLeft} from '@fortawesome/free-solid-svg-icons'
 
 library.add(faEdit)
 library.add(faTrashAlt)
@@ -25,6 +27,8 @@ library.add(faPlusSquare)
 library.add(faSave)
 library.add(faWindowClose)
 library.add(faInfoCircle);
+library.add(faArrowCircleRight);
+library.add(faArrowCircleLeft);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -35,6 +39,15 @@ Vue.use(BootstrapVue)
 //vue toasted
 import Toasted from 'vue-toasted'
 Vue.use(Toasted)
+
+//vue select
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
+Vue.component('v-select', vSelect)
+
+//vuelidate
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
 
 
 /*--------------------------------*/

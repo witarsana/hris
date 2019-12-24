@@ -65,7 +65,11 @@ export default [
         route: '/buttons',
         icon: 'cil-user',
         items: [
-          
+          {
+            name: 'Employee',
+            to: '/employee',
+            icon : 'cil-star'
+          }
         ]
       },
       {
