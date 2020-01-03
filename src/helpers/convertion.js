@@ -10,8 +10,7 @@ export function appendLeadingZeroes(n){
     return n
 }
 
-export function convertDateDMY(date){
-    
+export function convertDateDMY(date){    
     let newDate = new Date(date);
     return appendLeadingZeroes(newDate.getDate()) + "/" + appendLeadingZeroes((newDate.getMonth() + 1)) + "/" + newDate.getFullYear();
 }
@@ -21,3 +20,9 @@ export function convertDateYMD(date){
     let newDate = new Date(date);
     return appendLeadingZeroes(newDate.getFullYear()) + "/" + appendLeadingZeroes((newDate.getMonth() + 1)) + "/" + newDate.getDate();
 }
+export function convertTimeShort(time){
+    //alert(date);
+    var shorttime = time.substring(0, 5);
+    return shorttime;
+}
+

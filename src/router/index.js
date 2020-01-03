@@ -36,6 +36,13 @@ const Employee = () => import('@/views/hEmployee/List')
 //ORGANZATION MASTER DATA
 const OrganizationMasterData = () => import ('@/views/hOrganizationMasterData/List')
 
+//ORGANZATION LEVEL
+const OrganizationLevel = () => import ('@/views/hOrganizationLevel/List')
+
+// WORKSHIFT MASTER DATA
+const WorkShiftMasterData = () => import ('@/views/hWorkShiftMasterData/List')
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -172,6 +179,32 @@ function configRoutes () {
             {
               path: '',
               component: OrganizationMasterData,
+            }
+          ]
+        },
+        {
+          path: '/organization-level',
+          meta: { label: 'Organization Level'},         
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: OrganizationLevel,
+            }
+          ]
+        },
+        {
+          path: '/workshift-master-data',
+          meta: { label: 'Workshift Master Data'},         
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: WorkShiftMasterData,
             }
           ]
         },

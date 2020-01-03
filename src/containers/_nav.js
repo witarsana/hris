@@ -52,10 +52,26 @@ export default [
             icon : 'cil-star'
           },
           {
-            name: 'Organization',
+            name: 'Organization Relation',
             to: '/organization-master-data',
             icon : 'cil-star'
           },
+          {
+            name: 'Organization Level',
+            to: '/organization-level',
+            icon : 'cil-star'
+          },
+          {
+            name: 'Workshift Master Data',
+            to: '/workshift-master-data',
+            icon : 'cil-star'
+          },
+         /* {
+            name: 'Organization Master',
+            to: '/organization-master-data-detail',
+            icon : 'cil-star'
+          },*/
+         
           
         ]
       },

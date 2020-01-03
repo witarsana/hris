@@ -4,7 +4,7 @@
             <b-card-header header-tag="header" class="p-1 org-header" role="tab">
                 
                     <span class="organization" v-b-toggle="'accordion-'+dataObj.id">
-                        {{dataObj.org_name}} ({{dataObj.org_code}})
+                       {{dataObj.org_level.org_level_name}} : {{dataObj.org_name}} ({{dataObj.org_code}})
                         <b-badge pill variant="dark">{{dataObj.children.length>0?''+dataObj.children.length+'':''}}</b-badge>                   
                     </span>
                     <span class="float-right">

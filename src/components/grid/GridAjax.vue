@@ -18,6 +18,7 @@
                     
                 </template>
             </div>
+            
             <div class="col-md-5">&nbsp;</div>
             <template v-if="showSearch">
                 <div class='form-inline'>
