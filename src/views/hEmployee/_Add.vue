@@ -16,23 +16,14 @@
                         <li :class="getClass(1)"><a>1. General</a></li>
                         <li :class="getClass(2)"><a>2. Contact</a></li>
                         <li :class="getClass(3)"><a>3. Personal</a></li>
-                        <li :class="getClass(4)"><a>4. Organization</a></li>
-                        <li :class="getClass(5)"><a>5. Payroll & Tax</a></li>
-                        <li :class="getClass(6)"><a>6. Salary</a></li>
+                        <li :class="getClass(4)"><a>4. Payroll & Tax</a></li>
+                        <li :class="getClass(5)"><a>5. Salary</a></li>
                     </ul>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-
-
-
-
-
                     <template v-if="step==1">
-                       
-                         
-
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="EmployeeId">
@@ -172,13 +163,8 @@
                                     {{errorMessages.shift_code[0]}}
                                 </div>
                             </div>
-                        </div>     
-                                       
+                        </div>
                     </template>
-
-
-
-
                     <template v-if="step==2">
                         <div class="row">
                             <div class="col-md-6">
@@ -287,33 +273,6 @@
                             </div>
                         </div>
                     </template>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <template v-if="step==3">
                         <div class="row">
                             <div class="col-md-6">
@@ -351,7 +310,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label for="citizen">
+                                <label for="Gender">
                                     Citizens
                                     <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/>
                                 </label>
@@ -427,20 +386,7 @@
                             </div>
                         </div>
                     </template>
-
-
-
-                    <template v-if="step==4">                        
-                        <OrgComboboxes 
-                         :content="DataCombos" 
-                         :counter="getDataCounter">
-                        </OrgComboboxes>   
-                    </template>
-
-
-
-
-                    <template v-if="step==5">
+                    <template v-if="step==4">
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="StatusPTKP">Status PTKP <font-awesome-icon :style="{ color: 'darkorange' }" v-c-tooltip.hover.click="'Required'" icon="info-circle"/></label>
@@ -527,31 +473,7 @@
                             </div>
                         </div>
                     </template>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <template v-if="step==6">
+                    <template v-if="step==5">
                         <div class="row mt-2" v-for="(sE,key) in $v.salaryElement.$each.$iter" :key="key">
                             <div class="col-md-3">
                                 <div class="form-group">
@@ -600,26 +522,14 @@
             </div>
             
         </template>
-
-
-
-
-
-
-
-
-
-
-
-
         <template v-slot:modal-footer="{save, close}">
             <template v-if="step>1">
                 <ButtonBackFull ref="btnBack" :actions="prevStep" />
             </template>
-            <template v-if="step<6">
+            <template v-if="step<5">
                 <ButtonNextFull ref="btnNext" :actions="nextStep" />
             </template>
-            <template v-if="step==6">
+            <template v-if="step==5">
                 <ButtonSaveFull ref="btnSave" :actions="saveAct" />
             </template>
           
@@ -657,7 +567,6 @@ import { stringify } from 'querystring'
 
 //vuelidate
 import { required, numeric,minLength  } from 'vuelidate/lib/validators'
-import OrgComboboxes from '@/components/org-combo/OrgComboboxes.vue'
 
 const url = process.env.VUE_APP_API_SOURCE;
 export default {
@@ -673,8 +582,6 @@ export default {
         ButtonNextFull,
         ButtonBackFull,
         Treeselect,
-        OrgComboboxes
-
     },
     data() {
         return {
@@ -804,85 +711,6 @@ export default {
             statusPtkp : [],
             salaryMaster : [],
             salaryElement : [],
-            DataCombos : [],
-            organization_employee_data : []
-            //DataCombos : {ComboCount:8,ComboLabelValue:['Company','Divisi','Departemen','Workgroup','Section','Position','UnitKerja','Shift'],ComboLabelCaption:['Company','Divisi','Departemen','Workgroup','Section','Position','Unit Kerja','Shift'],ComboName:['Company','Divisi','Departemen','Workgroup','Section','Position','UnitKerja','Shift'],ComboRelation:[{relation:['Company','Divisi']},{relation:['Divisi','Departemen']},{relation:['Workgroup','Section']}],ComboSelected :[],DataComb :[{combo:[{value : 'M01',caption : 'Mahpati1'}]},{combo:[{value : 'ACT',caption : 'Akunting'},{value : 'D01',caption : 'Development'},{value : 'HR',caption : 'Human Resource'},{value : 'IT',caption : 'Information Technology'},{value : 'OPR',caption : 'Operational'}]},{combo:[{value : 'DEP1',caption : 'DEP1'},{value : 'DEP2',caption : 'DEP2'},{value : 'HR01',caption : 'Payroll'},{value : 'HR02',caption : 'Recruitment'},{value : 'HR03',caption : 'Tax & BPJS'}]},{combo:[{value : 'O01',caption : 'Operation'}]},{combo:[{value : 'SEC1',caption : 'SEC1'}]},{combo:[{value : '',caption : ''}]},{combo:[{value : '',caption : ''}]},{combo:[{value : '',caption : ''}]}],DataCombRelation :[{combo:[{value: 'M01', subcombo :[{value : 'ACT',caption : 'Akunting'},{value : 'D01',caption : 'Development'},{value : 'HR',caption : 'Human Resource'},{value : 'IT',caption : 'Information Technology'},{value : 'OPR',caption : 'Operational'}]}]},{combo:[{value: 'D01', subcombo :[{value : 'DEP1',caption : 'DEP1'},{value : 'DEP2',caption : 'DEP2'}]},{value: 'HR', subcombo :[{value : 'HR01',caption : 'Payroll'},{value : 'HR02',caption : 'Recruitment'},{value : 'HR03',caption : 'Tax & BPJS'}]}]},{combo:[{value: 'O01', subcombo :[{value : 'SEC1',caption : 'SEC1'}]}]}]}
-            /* DataCombos : {
-                ComboCount:8,
-                ComboLabelValue:['Company','Divisi','Departemen','Workgroup','Section','Position','UnitKerja','Shift'],
-                ComboLabelCaption:['Company','Divisi','Departemen','Workgroup','Section','Position','Unit Kerja','Shift'],
-                ComboName:['Company','Divisi','Departemen','Workgroup','Section','Position','UnitKerja','Shift'],
-                ComboRelation:[
-                    {relation:['Company','Divisi']},
-                    {relation:['Divisi','Departemen']},
-                    {relation:['Workgroup','Section']}
-                    ],
-                ComboSelected :[],
-                DataComb :[
-                    {combo:[
-                            {value : 'M01',caption : 'Mahpati1'}
-                            ]},
-                    {combo:[
-                            {value : 'ACT',caption : 'Akunting'},
-                            {value : 'D01',caption : 'Development'},
-                            {value : 'HR',caption : 'Human Resource'},
-                            {value : 'IT',caption : 'Information Technology'},
-                            {value : 'OPR',caption : 'Operational'}
-                            ]},
-                    {combo:[
-                            {value : 'DEP1',caption : 'DEP1'},
-                            {value : 'DEP2',caption : 'DEP2'},
-                            {value : 'HR01',caption : 'Payroll'},
-                            {value : 'HR02',caption : 'Recruitment'},
-                            {value : 'HR03',caption : 'Tax & BPJS'}
-                            ]},
-                    {combo:[
-                            {value : 'O01',caption : 'Operation'}
-                            ]},
-                    {combo:[
-                            {value : 'SEC1',caption : 'SEC1'}
-                            ]},
-                    {combo:[{value :'' ,caption :'' }]},
-                    {combo:[{value :'' ,caption :'' }]},
-                    {combo:[{value :'' ,caption :'' }]}
-                ],
-                DataCombRelation :[
-                    {combo:[
-                            {value: 'M01', subcombo :[
-                                {value : 'ACT',caption : 'Akunting'},
-                                {value : 'D01',caption : 'Development'},
-                                {value : 'HR',caption : 'Human Resource'},
-                                {value : 'IT',caption : 'Information Technology'},
-                                {value : 'OPR',caption : 'Operational'}
-                                ]
-                            }
-                            ]
-                    },
-                    {combo:[
-                            {value: 'D01', subcombo :[
-                                {value : 'DEP1',caption : 'DEP1'},
-                                {value : 'DEP2',caption : 'DEP2'}
-                                ]
-                            },
-                            {value: 'HR', subcombo :[
-                                {value : 'HR01',caption : 'Payroll'},
-                                {value : 'HR02',caption : 'Recruitment'},
-                                {value : 'HR03',caption : 'Tax & BPJS'}
-                                ]
-                            }
-                            ]
-                    },
-                    {combo:[
-                            {value: 'O01', subcombo :[
-                                {value : 'SEC1',caption : 'SEC1'}
-                                ]
-                            }
-                            ]
-                    }
-                ]
-            } */
-        
- 
         }
     },
     computed : {
@@ -892,9 +720,6 @@ export default {
                 'tenant-token'  : ''+this.$store.getters.curentUser.api_token+''
             }
         },
-        getDataCounter(){
-            return  parseInt(Object.assign(this.DataCombos.ComboCount));
-        }
     },
     methods : {
         formatDate(data){
@@ -934,27 +759,6 @@ export default {
             this.form.contract_begin_date = convertDateYMD(this.form.contract_begin_date);
             this.form.contract_end_date = convertDateYMD(this.form.contract_end_date);
             
-           /* console.log(this.DataCombos.ComboName);
-            console.log(this.DataCombos.ComboName[1]);
-            console.log(this.DataCombos.ComboName[2]);
-            console.log(this.DataCombos.ComboName[3]);
-            console.log(this.DataCombos.ComboName[4]);
-            console.log(this.DataCombos.ComboName[5]);
-*/
-            if(this.step == '4'){
-               /* console.log(document.getElementById("Company").value);
-                console.log(document.getElementById("Divisi").value);
-                console.log(document.getElementById("Departemen").value);
-                console.log(document.getElementById("Workgroup").value);
-                console.log(document.getElementById("Section").value);
-                console.log(document.getElementById("Position").value);
-                console.log(document.getElementById("UnitKerja").value);
-                console.log(document.getElementById("Shift").value);
-                console.log(document.getElementById("tes").value);*/
-
-                this.getOrganizationDynamicValueSelected();
-            }
-
             axios.post(''+url+'pegawai/checkvalidate',Object.assign({},this.form,{'step' : this.step}),{
                 headers : this.headerAccess
             }).then((res)=>{
@@ -971,12 +775,8 @@ export default {
                 }).catch((err)=>{
                     console.log(err);
                 });
-
         },
         prevStep(){
-            if(this.step == '4'){
-                this.setOrganizationDynamicValueSelected();
-            }
             this.step -= 1;
         },
         cleanForm(){
@@ -991,32 +791,6 @@ export default {
             this.form = Object.assign(obj);
         },
         saveAct(){ 
-            /*
-            console.log(this.DataCombos.ComboName);
-            console.log(this.DataCombos.ComboName[1]);
-            console.log(this.DataCombos.ComboName[2]);
-            console.log(this.DataCombos.ComboName[3]);
-            console.log(this.DataCombos.ComboName[4]);
-            console.log(this.DataCombos.ComboName[5]);
-            console.log(document.getElementById("Company").value);
-            console.log(document.getElementById("Divisi").value);
-            console.log(document.getElementById("Departemen").value);
-            console.log(document.getElementById("Workgroup").value);
-            console.log(document.getElementById("Section").value);
-            console.log(document.getElementById("Position").value);
-            console.log(document.getElementById("UnitKerja").value);
-            console.log(document.getElementById("Shift").value);
-            console.log(document.getElementById("tes").value);
-
-            var selectedArr = [];
-            //var valuesArr = this.DataCombos.ComboName;
-            for(var i=0;i < this.DataCombos.ComboName.length;i++){                
-                selectedArr.push(document.getElementById('"'+this.DataCombos.ComboName[i]+'"').value);
-            }
-            console.log(selectedArr);
-            */
-
-
             this.$v.$touch();
             this.isLoading = true;
             if (this.$v.$invalid) {
@@ -1025,18 +799,12 @@ export default {
             }else{
                 this.errorSave = false;
                 //proses simpan
-                let objectSend = Object.assign(
-                                                this.form,
-                                                {'salary_employee':this.salaryElement},
-                                                {'organization_employee':this.DataCombos.ComboName},
-                                                {'oganization_employee_data':this.organization_employee_data} 
-                                              );
+                let objectSend = Object.assign(this.form,{'salary_employee':this.salaryElement});
                 objectSend.birth_date = convertDateYMD(objectSend.birth_date);
                 objectSend.join_date = convertDateYMD(objectSend.join_date);
                 objectSend.contract_begin_date = convertDateYMD(objectSend.contract_begin_date);
                 objectSend.contract_end_date = convertDateYMD(objectSend.contract_end_date);
                 console.log(objectSend);
-
                 axios.post(''+url+'pegawai',objectSend,{
                     headers : this.headerAccess
                 }).then((res)=>{
@@ -1092,58 +860,9 @@ export default {
                 headers : this.headerAccess
             }).then((res)=>{
                 this.salaryMaster = Object.assign(res.data.data);
-
             }).catch((err)=>{
                 console.log(err);
             });
-        },
-        getOrganizationDynamic(){
-            axios.get(''+url+'organizationmasterdata_dynamic_org/selected',{
-                headers : this.headerAccess
-            }).then((res)=>{
-                this.DataCombos = Object.assign(JSON.parse(res.data.data));
-                //this.DataCombos = JSON.parse(res.data.data);
-                //this.DataCombos = res.data.data;
-                //alert(this.DataCombos);
-                //alert(JSON.stringify(this.DataCombos));
-                //alert(this.DataCombos.ComboCount);
-                //alert(this.DataCombos[1]);
-                //alert(this.DataCombos[2]);
-                //alert('tes');
-            }).catch((err)=>{
-                console.log(err);
-            });
-        }, 
-        getOrganizationDynamicValueSelected(){          
-
-
-            console.log(this.DataCombos.ComboName);
-            
-            console.log(document.getElementById("Company").value);
-            console.log(document.getElementById("Divisi").value);
-            console.log(document.getElementById("Departemen").value);
-            console.log(document.getElementById("Workgroup").value);
-            console.log(document.getElementById("Section").value);
-            console.log(document.getElementById("Position").value);
-            console.log(document.getElementById("UnitKerja").value);
-            console.log(document.getElementById("Shift").value);
-            console.log(document.getElementById("tes").value);
-            console.log(this.DataCombos.ComboName.length);
-            console.log(this.organization_employee_data);
-
-           this.organization_employee_data = [];
-           for(var i=0;i < this.DataCombos.ComboName.length;i++){                
-                this.organization_employee_data.push(document.getElementById(this.DataCombos.ComboName[i]).value);
-           }
-
-            console.log(this.organization_employee_data);
-            this.setOrganizationDynamicValueSelected();
-           
-            //return selectedArr;
-        },    
-        setOrganizationDynamicValueSelected(){
-            this.DataCombos.ComboSelected = [];
-            this.DataCombos.ComboSelected = this.organization_employee_data;
         },
         normalizer(obj){
             return {
@@ -1165,7 +884,7 @@ export default {
                 case 200 : 
                 this.isError = false;
                 this.refreshList();
-                //this.$bvModal.hide('add-edit');
+                this.$bvModal.hide('add-edit');
 
                 //toasted
                 let messageT = "";
@@ -1238,7 +957,6 @@ export default {
         }
     },
     mounted(){
-        this.getOrganizationDynamic();
         this.getEmployeeTypes();
         this.getWorkShifts();
         this.getOrganization();

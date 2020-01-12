@@ -320,7 +320,7 @@ export default {
         },
        
         getDataComboOrganizationLevel(CurrentLevel){
-               //alert(this.status + '--' + CurrentLevel);
+            //alert(this.status + '--' + CurrentLevel);
               //alert( this.headerAccess.Authorization+ '');
               //alert( this.$store.getters.curentUser.api_token+ '');
               //if(CurrentLevel.length == 0){ //Jika CurrentLevel kosong
@@ -328,13 +328,26 @@ export default {
                      headers : this.headerAccess
                 }).then((resp)=>{
                     //alert(resp.data.data.length);
-                    //alert(alert(JSON.stringify(resp.data.data[0].id)));
+                    //alert(JSON.stringify(resp.data.data));
+                    //alert(JSON.stringify(resp.data.data[0]));
+                    //console.log(JSON.stringify(resp.data.data.length));
+                    //console.log(CurrentLevel);
+                    var data = resp.data.data;
+                    var CounterLevel;
+                    for (var i=0; i < data.length;i++){
+                        //console.log(data[i].org_level_code);
+                        if(data[i].org_level_code == CurrentLevel){
+                            CounterLevel = i;
+                        }
+                    }
+                    console.log(CounterLevel);
+
                     if(this.status == "update"){ //kalau status update maka yang diambil data
                         this.org_level_code_options = [];
-                        this.org_level_code_options.push(resp.data.data[parseInt(CurrentLevel)-1]);
+                        this.org_level_code_options.push(resp.data.data[parseInt(CounterLevel)]);
                     }
                     else{   //kalau status add data
-                        if(CurrentLevel.length == 0){
+                        if(CounterLevel.length == 0){
                             this.org_level_code_options = resp.data.data;
                         }
                         else{
@@ -342,7 +355,7 @@ export default {
                             var varTemp;
                             this.org_level_code_options = [];
                             for (i = 0; i < resp.data.data.length; i++) {
-                              if(parseInt(resp.data.data[i].id) > parseInt(CurrentLevel)){
+                              if(parseInt(resp.data.data[i].id) > parseInt(CounterLevel)+1){
                                  this.org_level_code_options.push(resp.data.data[i]);
                                  break;
                               }
@@ -356,7 +369,7 @@ export default {
           
         },
         addData(obj){
-            //alert(obj.id+'---'+obj.org_level_code);
+            //alert(obj.sorting_number+'----'+obj.id+'---'+obj.org_level_code);
             var CurrentLevel;
             this.cleanForm();
             if (obj.id==undefined){
